@@ -1,0 +1,59 @@
+.table-container {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-mdc-table thead, .mat-mdc-header-cell {
+  background: white;
+}
+
+.mat-mdc-header-cell {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid rgba(154, 156, 158, 0.5);
+  font-weight: bold;
+}
+
+.mat-mdc-cell, .mat-mdc-footer-cell {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background: white;
+}
+
+.mat-mdc-row:nth-of-type(odd) {
+  background: white;
+}
+
+.mat-mdc-row:nth-of-type(even) {
+  background: #f9f9f9;
+}
+
+.mat-mdc-row.mat-row-selected {
+  background: #e8e8e8;
+}
+
+.mat-paginator {
+  margin: 16px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-actions {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-icon-button {
+  margin-left: 8px;
+}

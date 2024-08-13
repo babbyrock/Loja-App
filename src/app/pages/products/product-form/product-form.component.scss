@@ -1,0 +1,17 @@
+.custom-dialog-class .mat-dialog-container {
+
+}
+
+.custom-dialog-class .form-container  form{
+  display: flex;
+  flex-direction: column; /* Organiza o conteúdo do formulário em uma coluna */
+}
+
+
+.custom-dialog-class .actions {
+  display: flex;
+  justify-content: flex-end; /* Alinha os botões à direita, ajustável conforme necessário */
+}
+.custom-dialog-class .actions button {
+  margin: 0 16px;
+}

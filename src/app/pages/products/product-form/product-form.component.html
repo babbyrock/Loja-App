@@ -1,0 +1,49 @@
+<!-- product-form.component.html -->
+<div class="custom-dialog-class">
+  <h2 mat-dialog-title>{{ title }}</h2>
+
+  <mat-dialog-content>
+    <div class="form-container">
+      <form [formGroup]="form" (ngSubmit)="saveProduct()">
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome" formControlName="name" />
+          <mat-error *ngIf="f.name.invalid && f.name.touched">
+            Nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Preço</mat-label>
+          <input matInput placeholder="Preço" formControlName="price" />
+          <mat-error *ngIf="f.price.invalid && f.price.touched">
+            Preço é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Descrição</mat-label>
+          <input matInput placeholder="Descrição" formControlName="description" />
+          <mat-error *ngIf="f.description.invalid && f.description.touched">
+            Descrição é obrigatória e deve ter no máximo 50 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Quantidade</mat-label>
+          <input matInput placeholder="Quantidade" formControlName="amount" />
+          <mat-error *ngIf="f.amount.invalid && f.amount.touched">
+            Quantidade é obrigatória
+          </mat-error>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">
+            Salvar
+          </button>
+          <button mat-button color="warn" type="button" (click)="cancel() ">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </mat-dialog-content>
+</div>

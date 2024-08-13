@@ -1,0 +1,20 @@
+
+.custom-dialog-class {
+  overflow: auto;
+
+}
+.custom-dialog-class {
+  z-index: 10000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 32px;
+}

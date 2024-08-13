@@ -1,0 +1,32 @@
+<!-- table.component.html -->
+<div class="table-container">
+  <div class="table-actions">
+    <!-- Adicione seus botões de ação ou outros controles aqui -->
+  </div>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Defina as colunas da tabela -->
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.header}}</th>
+      <td mat-cell *matCellDef="let element">{{column.cell(element)}}</td>
+    </ng-container>
+
+    <!-- Coluna de ações -->
+    <ng-container *ngIf="actions.length > 0" matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngFor="let action of actions">
+          <button mat-icon-button (click)="triggerAction(action.event, element)">
+            <mat-icon>{{action.icon}}</mat-icon>
+          </button>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Defina a linha de cabeçalho e as linhas da tabela -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Adicione o paginator -->
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
