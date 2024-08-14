@@ -42,10 +42,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: [this.product.name || '', Validators.required],
-      price: [this.product.price || '', Validators.required],
+      price: [this.product.price || '', [Validators.required, Validators.min(0.01)]],
       description: [this.product.description || '', [Validators.required, Validators.maxLength(50)]],
-      amount: [this.product.amount || 1, [Validators.required, Validators.min(1)]] // Alterado aqui
+      amount: [this.product.amount || 1, [Validators.required, Validators.min(1)]]
     });
+
 
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
@@ -63,7 +64,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   private loadProduct(id: number): void {
     this.productService.getProdutos().subscribe(produtos => {
-      console.log('Produtos:', produtos);
 
       this.product = produtos.find(p => p.id === id) as Product;
 
