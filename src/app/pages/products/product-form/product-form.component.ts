@@ -6,6 +6,7 @@ import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../models/produto.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProductEvent } from '../../../models/enums/ProductEvent';
+import { ProductMessageService } from '../../../services/product-message.service';
 
 @Component({
   selector: 'app-product-form',
@@ -30,7 +31,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private dialogRef: MatDialogRef<ProductFormComponent>
+    private dialogRef: MatDialogRef<ProductFormComponent>,
+    private productMessageService: ProductMessageService
   ) {
     this.title = data.action.event === ProductEvent.EDIT_PRODUCT_EVENT ? 'Editar Produto' : 'Novo Produto';
     this.estadoSalvar = data.action.event === ProductEvent.EDIT_PRODUCT_EVENT ? 'put' : 'post';
@@ -80,7 +82,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   saveProduct(): void {
     if (this.form.valid) {
-
       this.product = this.estadoSalvar === 'post'
         ? { ...this.form.value }
         : { id: this.product.id, ...this.form.value };
@@ -90,11 +91,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         : this.productService.atualizarProduto(this.product);
 
       saveOperation.pipe(
-        finalize(() => this.dialogRef.close()) // Fecha o modal quando a operação termina
+        finalize(() => {
+          this.dialogRef.close();
+          this.productMessageService.notifyProductUpdated();
+        })
       ).subscribe({
         next: () => {
           this.productService.showSuccess(this.estadoSalvar === 'post' ? 'Produto criado' : 'Produto atualizado');
-          this.router.navigate(['/produtos']); // Navegar para outra página
+          this.router.navigate(['/produtos']);
         },
         error: () => {
           this.productService.showError('Ocorreu um erro');
@@ -106,7 +110,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   cancel(): void {
-    this.dialogRef.close(); // Fechar o diálogo
+    this.dialogRef.close();
   }
 
 }
