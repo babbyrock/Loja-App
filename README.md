@@ -1,3 +1,57 @@
+
+
+# LojaApp
+
+Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 18.1.4.
+
+## Objetivo
+
+Criar um projeto Angular que permita gerenciar pedidos de uma loja.
+
+## Funcionalidades
+
+- **Listar Pedidos:**
+  - Exibir todos os pedidos registrados.
+
+- **Iniciar Novo Pedido:**
+  - Permitir ao usuário iniciar um novo pedido.
+
+- **Adicionar Produto:**
+  - Permitir ao usuário adicionar produtos ao pedido.
+
+- **Remover Produto:**
+  - Permitir ao usuário remover produtos do pedido.
+
+- **Fechar Pedido:**
+  - Permitir ao usuário fechar o pedido.
+
+## Regras de Negócio
+
+- Produtos não podem ser adicionados/removidos em pedidos fechados.
+- Um pedido só pode ser fechado se contiver pelo menos um produto.
+- O produto deve conter uma descrição de no máximo 50 caracteres.
+- Quando um pedido é excluído, os produtos são devolvidos à loja.
+- Ao fechar um pedido, todas as ações são bloqueadas.
+- A edição dos pedidos atualiza a loja, adicionando ou removendo produtos da lista de pedidos.
+
+## Condições
+
+- **Backend:**
+  - Para simplicidade, os dados são armazenados numa lista em memória.
+  - Dados são retornados em observables para simular chamadas assíncronas.
+
+## Regras de Implementação
+
+- Implementação de notificações para atualizar as listas quando algum valor é mudado.
+- Armazenamento de dados utilizando `localStorage` para persistência.
+
+## Setup
+
+Para instalar as dependências do projeto, execute:
+
+##bash
+npm install
+
 # LojaApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
