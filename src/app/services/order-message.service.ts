@@ -1,15 +1,14 @@
-// product-message.service.ts
 import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductMessageService {
+export class OrderMessageService {
   constructor(private messageService: MessageService<void>) {}
 
-  notifyProductUpdated(): void {
-    console.log("Notificando atualização do produto");
+  notifyOrderUpdated(): void {
+    console.log("Notificando atualização do pedido");
     this.messageService.notify();
   }
 

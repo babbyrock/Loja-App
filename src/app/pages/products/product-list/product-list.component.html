@@ -1,15 +1,19 @@
 <div class="header-container">
   <h1 class="header-title">Produtos</h1>
-  <button mat-raised-button (click)="navigateToProductCreate()" class="new-product-button">
-    Novo Produto
-  </button>
+  <div class="header-controls">
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar Produtos</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Digite para buscar...">
+    </mat-form-field>
+    <button mat-raised-button (click)="navigateToProductCreate()" class="new-product-button">
+      Novo Produto
+    </button>
+  </div>
 </div>
 
 <app-table
-  [data]="products"
+  [data]="filteredProducts"
   [columns]="columns"
   [actions]="actions"
   (actionTriggered)="handleAction($event)">
 </app-table>
-
-

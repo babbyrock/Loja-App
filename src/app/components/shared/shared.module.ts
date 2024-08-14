@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [TableComponent, ConfirmationDialogComponent],
@@ -31,7 +32,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatSortModule,
     MatIconModule,
     TableComponent,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

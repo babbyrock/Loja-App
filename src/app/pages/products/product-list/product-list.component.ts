@@ -1,4 +1,3 @@
-// src/app/components/product-list/product-list.component.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -18,8 +17,10 @@ import { EventAction } from '../../../models/event/EventAction';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   products: Product[] = [];
+  filteredProducts: Product[] = [];
   displayedColumns: string[] = [];
   private readonly destroy$: Subject<void> = new Subject();
+  searchText: string = '';
 
   columns = [
     { columnDef: 'name', header: 'Nome', cell: (element: Product) => element.name },
@@ -45,7 +46,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.productMessageService.message$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(() => {
-      this.getProducts(); // Atualiza a lista quando um produto for removido ou atualizado
+      this.getProducts();
     });
   }
 
@@ -53,6 +54,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.productService.getProdutos().subscribe({
       next: (produtos) => {
         this.products = produtos;
+        this.filteredProducts = produtos;
         this.displayedColumns = this.columns.map(c => c.columnDef).concat(['actions']);
         console.log("Produtos atualizados:", this.products);
       },
@@ -61,6 +63,17 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.productService.showError('Erro ao buscar produtos');
         this.router.navigate(['/dashboard']);
       }
+    });
+  }
+
+  applyFilter(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value.trim().toLowerCase();
+    this.searchText = value;
+    this.filteredProducts = (this.products ?? []).filter(product => {
+      return Object.values(product).some(val =>
+        val.toString().toLowerCase().includes(this.searchText)
+      );
     });
   }
 
@@ -86,7 +99,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.getProducts(); // Atualiza a lista após o fechamento do modal
     });
   }
 
@@ -107,10 +119,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
             this.productMessageService.notifyProductUpdated();
           }
         });
+      }
     }
   }
-}
-
 
   ngOnDestroy(): void {
     this.destroy$.next();

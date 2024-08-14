@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from './components/shared/shared.module';
 import { ProductsModule } from './pages/products/product.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrdersModule } from './pages/order/order.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     SharedModule,
     ProductsModule,
+    OrdersModule,
     BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,24 @@
+<div class="header-container">
+  <h1 class="header-title">Pedidos</h1>
+  <div class="header-controls">
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select (selectionChange)="onStatusChange($event.value)">
+        <mat-option *ngFor="let status of orderStatuses" [value]="status.value">
+          {{ status.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="navigateToOrderCreate()" class="new-order-button">
+      Novo Pedido
+    </button>
+  </div>
+</div>
+
+<app-table
+  [data]="filteredOrders"
+  [columns]="columns"
+  [actions]="actions"
+  (actionTriggered)="handleAction($event)"
+  (cellClicked)="handleCellClick($event)">
+</app-table>

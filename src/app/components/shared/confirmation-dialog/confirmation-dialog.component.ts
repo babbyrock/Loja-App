@@ -14,10 +14,10 @@ export class ConfirmationDialogComponent {
   ) { }
 
   onConfirm(): void {
-    this.dialogRef.close(true); // Enviar confirmação positiva
+    this.dialogRef.close(true);
   }
 
   onCancel(): void {
-    this.dialogRef.close(false); // Enviar confirmação negativa
+    this.dialogRef.close(false);
   }
 }

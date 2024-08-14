@@ -4,5 +4,5 @@ import { Product } from '../produto.model';
 
 export interface EventAction {
   event: ProductEvent;
-  product?: Product; // Opcional, pode ser usado se necessário
+  product?: Product;
 }

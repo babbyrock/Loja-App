@@ -11,8 +11,15 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TableComponent<T> implements OnInit, AfterViewInit, OnChanges {
   @Input() data: T[] = [];
   @Input() columns: { columnDef: string, header: string, cell: (element: T) => string | number }[] = [];
-  @Input() actions: { name: string, event: string, icon: string }[] = [];
+  @Input() actions: {
+    name: string;
+    event: string;
+    icon: string;
+    isDisabled?: (element: T) => boolean;
+  }[] = [];
+
   @Output() actionTriggered = new EventEmitter<{ event: string, element: T }>();
+  @Output() cellClicked = new EventEmitter<{ element: T, columnDef: string }>();
 
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource<T>();
@@ -49,4 +56,13 @@ export class TableComponent<T> implements OnInit, AfterViewInit, OnChanges {
   triggerAction(event: string, element: T): void {
     this.actionTriggered.emit({ event, element });
   }
+
+  onCellClick(element: T, columnDef: string): void {
+    this.cellClicked.emit({ element, columnDef });
+  }
+
+  isClickableColumn(columnDef: string): boolean {
+    return ['number', 'productNames', 'startDate', 'totalAmount'].includes(columnDef);
+  }
+
 }

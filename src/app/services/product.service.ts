@@ -63,26 +63,20 @@ export class ProductService {
 
   removerProduto(id: number): Observable<void> {
     console.log("entrou");
-      // Recupera a lista de produtos do localStorage
       const produtos = this.getProdutosFromLocalStorage();
       console.log("entrou");
 
 
-      // Encontra o índice do produto com o ID fornecido
       const index = produtos.findIndex(p => p.id === id);
 
       if (index !== -1) {
-        // Produto encontrado, remove-o da lista
         console.log('Removendo produto com ID:', produtos[index].id);
         produtos.splice(index, 1);
-
-        // Atualiza o localStorage e o BehaviorSubject
         this.saveProdutosToLocalStorage(produtos);
         this.productsSubject.next(produtos);
 
         return of();
       } else {
-        // Produto não encontrado, lança um erro
         console.error('Produto não encontrado. ID:', id);
         return throwError(() => new Error('Produto não encontrado.'));
     }

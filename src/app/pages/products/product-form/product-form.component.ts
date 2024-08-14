@@ -1,4 +1,3 @@
-// product-form.component.ts
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -43,7 +42,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       name: [this.product.name || '', Validators.required],
       price: [this.product.price || '', Validators.required],
       description: [this.product.description || '', [Validators.required, Validators.maxLength(50)]],
-      amount: [this.product.amount || 0, Validators.required]
+      amount: [this.product.amount || 1, [Validators.required, Validators.min(1)]] // Alterado aqui
     });
 
     this.route.paramMap.subscribe(params => {
@@ -79,9 +78,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     });
   }
 
-
   saveProduct(): void {
     if (this.form.valid) {
+
       this.product = this.estadoSalvar === 'post'
         ? { ...this.form.value }
         : { id: this.product.id, ...this.form.value };
