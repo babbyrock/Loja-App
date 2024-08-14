@@ -29,39 +29,41 @@
 
       <div class="product-list">
         <h2 mat-dialog-title style="padding: 0;"> Produtos no Pedido </h2>
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.product.name }}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.product.price | currency }}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="quantity">
-            <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.quantity }}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.product.description }}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="total">
-            <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.totalAmount | currency }}</mat-cell>
-          </ng-container>
+        <div class="mat-table-container">
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.product.name }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="price">
+              <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.product.price | currency }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+              <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.quantity }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="description">
+              <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.product.description }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="total">
+              <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.totalAmount | currency }}</mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <button mat-icon-button type="button" color="warn" (click)="removeProduct(element)" *ngIf="!isReadOnly">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button type="button" color="warn" (click)="removeProduct(element)" *ngIf="!isReadOnly">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
       </div>
 
       <mat-form-field appearance="fill">

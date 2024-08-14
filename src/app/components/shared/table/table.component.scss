@@ -4,12 +4,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
 }
 
 .mat-mdc-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px; /* Define a largura mínima para garantir que a tabela tenha colunas suficientes para exibir o conteúdo */
 }
 
 .mat-mdc-table thead, .mat-mdc-header-cell {
@@ -57,6 +58,18 @@
 .mat-icon-button {
   margin-left: 8px;
 }
+
 .clickable-cell {
   cursor: pointer;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 600px) {
+  .table-container {
+    overflow-x: auto; /* Garante rolagem horizontal */
+  }
+
+  .mat-mdc-table {
+    min-width: 600px; /* Mantém uma largura mínima para a tabela */
+  }
 }
